@@ -6,7 +6,6 @@ import Footer from './Footer';
 function App() {
 	return (
 		<>
-			<h1>react</h1>
 			<Header />
 			<Section />
 			<Footer />
