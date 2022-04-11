@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Card from './Card';
 
 const path = process.env.PUBLIC_URL;
@@ -16,12 +16,19 @@ const num = arr.length;
 
 function Section() {
 	let [index, setIndex] = useState(0);
+	const wrap = useRef(null);
+
+	useEffect(() => {
+		rotate();
+	}, [index]);
+
+	const rotate = () => {
+		wrap.current.style.transform = `rotate(${45 * index}deg)`;
+	};
 
 	return (
 		<>
-			<section
-				className='wrap'
-				style={{ transform: `rotate(${45 * index}deg)` }}>
+			<section className='wrap' ref={wrap}>
 				{arr.map((data, idx) => {
 					return (
 						<Card key={idx} path={path} data={data} index={idx} num={num} />
